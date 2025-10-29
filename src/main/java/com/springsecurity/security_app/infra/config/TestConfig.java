@@ -1,4 +1,4 @@
-package com.springsecurity.security_app.config;
+package com.springsecurity.security_app.infra.config;
 
 import com.springsecurity.security_app.model.entity.Livro;
 import com.springsecurity.security_app.repository.LivroRepository;

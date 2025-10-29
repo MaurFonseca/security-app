@@ -1,6 +1,8 @@
 package com.springsecurity.security_app.controller;
 
 import com.springsecurity.security_app.dto.LoginRequest;
+import com.springsecurity.security_app.dto.RegisterRequest;
+import com.springsecurity.security_app.service.AuthenticationService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +20,19 @@ public class AuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private AuthenticationService authenticationService;
+
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid LoginRequest request){
         var usernamePassword = new UsernamePasswordAuthenticationToken(request.login(), request.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
 
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity register(@RequestBody @Valid RegisterRequest request){
+        return authenticationService.register(request);
     }
 }
