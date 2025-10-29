@@ -23,6 +23,8 @@ public class LivroService {
     }
 
     public Livro create(Livro request){
-       return new Livro(null, request.getName(), request.getPrice());
+        Livro livro = new Livro(null, request.getName(), request.getPrice());
+        livroRepository.save(livro);
+        return livro;
     }
 }
